@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/jmcc-sss/jmcc-test
     targetRevision: main
-    path: argocd/dops/reloader
+    path: argocd/dops/reloader/test-chart
     directory:
       recurse: true 
 
