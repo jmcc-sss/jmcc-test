@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster1-dops
+  name: cluster1-reloader
   namespace: argocd
 spec:
   project: default
@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/jmcc-sss/jmcc-test
     targetRevision: main
-    path: argocd/mgmt/cluster1/apps/dops
+    path: argocd/dops/reloader
 
   destination: 
     server: https://kubernetes.default.svc
