@@ -10,8 +10,9 @@ spec:
     repoURL: https://github.com/jmcc-sss/jmcc-test
     targetRevision: main
     path: argocd/dops/reloader/test-chart
-    directory:
-      recurse: true 
+    helm:
+      valueFiles:
+        - values.yaml
 
   destination: 
     server: https://kubernetes.default.svc
