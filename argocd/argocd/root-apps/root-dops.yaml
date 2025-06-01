@@ -13,10 +13,6 @@ spec:
     repoURL: https://github.com/jmcc-sss/jmcc-test
     targetRevision: main
     path: argocd/argocd/dops-apps/
-    helm:
-      releaseName: reloader
-      valueFiles:
-        - values.yaml
   syncPolicy:
     automated:
       prune: false
