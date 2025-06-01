@@ -12,7 +12,7 @@ spec:
             repoURL: https://github.com/jmcc-sss/jmcc-test
             targetRevision: main
             path: argocd/dops-apps/reloader/cluster1
-            valuesFile: argocd/dops-apps/reloader/cluster1/cluster1-values.yaml
+            valuesFile: values.yaml
   template:
     metadata:
       name: "{{cluster}}-reloader"
@@ -26,6 +26,7 @@ spec:
         targetRevision: "{{targetRevision}}"
         path: "{{path}}"
         helm:
+          releaseName: "reloader"
           valueFiles:
             - "{{valuesFile}}"
       syncPolicy:
