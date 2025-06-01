@@ -1,0 +1,23 @@
+# Application for cluster1
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reloader-cluster1
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: reloader
+  source:
+    repoURL: https://github.com/jmcc-sss/jmcc-test
+    targetRevision: main
+    path: argocd/dops-apps/reloader/cluster1
+    helm:
+      releaseName: reloader
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
