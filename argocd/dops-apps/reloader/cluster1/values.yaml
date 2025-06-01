@@ -1,0 +1,4 @@
+reloader:
+  ignoreNamespace: kube-system
+  reloadOnCreate: true
+  syncAfterRestart: true
