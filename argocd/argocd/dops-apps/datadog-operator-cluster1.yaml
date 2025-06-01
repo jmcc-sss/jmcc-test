@@ -11,8 +11,12 @@ spec:
   source:
     repoURL: https://github.com/jmcc-sss/jmcc-test
     targetRevision: main
-    path: argocd/dops-apps/datadog
+    path: argocd/dops-apps/datadog-operator/cluster1/
+    helm:
+      releaseName: datadog-operator
   syncPolicy:
     automated:
       prune: false
       selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
