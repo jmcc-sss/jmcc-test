@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: datadog-operator-cluster1
+  namespace: argocd
+spec:
+  project: dops
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: datadog
+  source:
+    repoURL: https://github.com/jmcc-sss/jmcc-test
+    targetRevision: main
+    path: argocd/dops-apps/datadog
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
