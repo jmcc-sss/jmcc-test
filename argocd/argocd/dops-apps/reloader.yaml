@@ -26,7 +26,7 @@
 #     metadata:
 #       name: "{{clustername}}-reloader"
 #     spec:
-#       project: default
+#       project: dops
 #       destination:
 #         server: "{{cluster}}"
 #         namespace: reloader

@@ -4,14 +4,14 @@ metadata:
   name: root-projects
   namespace: argocd
 spec:
-  project: default
+  project: dops
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
   source:
     repoURL: https://github.com/jmcc-sss/jmcc-test
     targetRevision: main
-    path: argocd/argocd/dops-apps/
+    path: argocd/argocd/projects/
   syncPolicy:
     automated:
       prune: false

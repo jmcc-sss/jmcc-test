@@ -4,7 +4,7 @@ metadata:
   name: root-dops
   namespace: argocd
 spec:
-  project: default
+  project: dops
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

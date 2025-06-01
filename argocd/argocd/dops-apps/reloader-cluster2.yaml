@@ -4,7 +4,7 @@ metadata:
   name: reloader-cluster2
   namespace: argocd
 spec:
-  project: default
+  project: dops
   destination:
     server: https://192.168.1.84:61565
     namespace: reloader
