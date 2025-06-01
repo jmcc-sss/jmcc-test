@@ -1,3 +1,2 @@
 datadog-operator:
-  datadog:
-    site: us5.datadoghq.com
+  site: us5.datadoghq.com
