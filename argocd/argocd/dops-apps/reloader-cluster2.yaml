@@ -15,10 +15,10 @@ spec:
     repoURL: https://github.com/jmcc-sss/jmcc-test
     targetRevision: main
     path: argocd/dops-apps/reloader/cluster2
-    helm:
-      releaseName: reloader
-      valueFiles:
-        - values.yaml
+    # helm:
+    #   releaseName: reloader
+    #   valueFiles:
+    #     - values.yaml
   syncPolicy:
     automated:
       prune: false
