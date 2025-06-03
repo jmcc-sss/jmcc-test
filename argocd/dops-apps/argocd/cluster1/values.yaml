@@ -6,4 +6,3 @@ argo-cd:
       enabled: false
     extraArgs:
       - --insecure
-      - --help
