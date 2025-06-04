@@ -4,7 +4,7 @@ metadata:
   name: github-action-cluster1
   namespace: argocd
 spec:
-  project: default
+  project: dops
   destination:
     server: https://kubernetes.default.svc
     namespace: default
