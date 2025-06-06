@@ -1,8 +1,7 @@
 argo-cd:
   configs:
-    cm:
-      params:
-        controller.sharding.algorithm: "round-robin"
+    params:
+      controller.sharding.algorithm: "round-robin"
 
   controller:
     replicas: 2
