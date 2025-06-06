@@ -1,4 +1,12 @@
 argo-cd:
+  configs:
+    cm:
+      params:
+        controller.sharding.algorithm: "round-robin"
+
+  controller:
+    replicas: 2
+
   server:
     service:
       type: NodePort
