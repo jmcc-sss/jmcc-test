@@ -13,10 +13,10 @@ spec:
                   cluster: https://kubernetes.default.svc
                   namespace: reloader
                   path: argocd/dops-apps/reloader/cluster1
-                - clustername: cluster2
-                  cluster: https://192.168.1.84:61565
-                  namespace: reloader
-                  path: argocd/dops-apps/reloader/cluster2
+                # - clustername: cluster2
+                #   cluster: https://192.168.1.84:61565
+                #   namespace: reloader
+                #   path: argocd/dops-apps/reloader/cluster2
           - list:
               elements:
                 - repoURL: https://github.com/jmcc-sss/jmcc-test
