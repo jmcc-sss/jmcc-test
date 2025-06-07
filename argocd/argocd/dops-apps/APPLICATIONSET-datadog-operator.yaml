@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: reloader
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - clustername: cluster1
+                  cluster: https://kubernetes.default.svc
+                - clustername: cluster2
+                  cluster: https://192.168.1.84:61565
+          - list:
+              elements:
+                - repoURL: https://github.com/jmcc-sss/jmcc-test
+                  targetRevision: main
+                  path: argocd/dops-apps/datadog-operator
+                  valuesFile: values.yaml
+                  namespace: datadog
+                  relaseName: datagog-operator
+  template:
+    metadata:
+      name: "reloader-{{clustername}}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: .
+    spec:
+      project: dops
+      destination:
+        server: "{{cluster}}"
+        namespace: "{{namespace}}"
+      source:
+        repoURL: "{{repoURL}}"
+        targetRevision: "{{targetRevision}}"
+        path: "{{path}}"
+        helm:
+          releaseName: "{{relaseName}}"
+          valueFiles:
+            - "{{valuesFile}}"
+      syncPolicy: {}
+        # automated:
+        #   prune: false
+        #   selfHeal: false
+  # Prevents the applicationset from deleting resources if we remove the app
+  syncPolicy:
+    preserveResourcesOnDeletion: true
