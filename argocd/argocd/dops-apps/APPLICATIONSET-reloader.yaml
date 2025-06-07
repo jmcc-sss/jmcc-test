@@ -25,6 +25,8 @@ spec:
   template:
     metadata:
       name: "reloader-{{clustername}}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: .
     spec:
       project: dops
       destination:
