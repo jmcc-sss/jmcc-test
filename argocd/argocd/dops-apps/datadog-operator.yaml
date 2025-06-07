@@ -23,7 +23,7 @@ spec:
                   relaseName: datagog-operator
   template:
     metadata:
-      name: "reloader-{{clustername}}"
+      name: "datadog-operator-{{clustername}}"
       annotations:
         argocd.argoproj.io/manifest-generate-paths: .
     spec:
