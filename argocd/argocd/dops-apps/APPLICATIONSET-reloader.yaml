@@ -24,7 +24,7 @@ spec:
                   valuesFile: values.yaml
   template:
     metadata:
-      name: "{{clustername}}-reloader"
+      name: "reloader-{{clustername}}"
     spec:
       project: dops
       destination:
