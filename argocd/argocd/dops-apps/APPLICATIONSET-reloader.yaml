@@ -39,7 +39,9 @@ spec:
           valueFiles:
             - "{{valuesFile}}"
       syncPolicy:
-        preserveResourcesOnDeletion: true
         automated:
           prune: false
           selfHeal: false
+  # Prevents the applicationset from deleting resources if we remove the app
+  syncPolicy:
+    preserveResourcesOnDeletion: true
