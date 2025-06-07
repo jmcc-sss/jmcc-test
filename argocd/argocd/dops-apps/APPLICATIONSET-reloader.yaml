@@ -1,44 +1,44 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: ApplicationSet
-# metadata:
-#   name: reloader
-#   namespace: argocd
-# spec:
-#   generators:
-#     - matrix:
-#         generators:
-#           - list:
-#               elements:
-#                 - clustername: cluster1
-#                   cluster: https://kubernetes.default.svc
-#                   namespace: reloader
-#                   path: argocd/dops-apps/reloader/cluster1
-#                 - clustername: cluster2
-#                   cluster: https://192.168.1.84:61565
-#                   namespace: reloader
-#                   path: argocd/dops-apps/reloader/cluster2
-#           - list:
-#               elements:
-#                 - repoURL: https://github.com/jmcc-sss/jmcc-test
-#                   targetRevision: main
-#                   valuesFile: values.yaml
-#   template:
-#     metadata:
-#       name: "{{clustername}}-reloader"
-#     spec:
-#       project: dops
-#       destination:
-#         server: "{{cluster}}"
-#         namespace: reloader
-#       source:
-#         repoURL: "{{repoURL}}"
-#         targetRevision: "{{targetRevision}}"
-#         path: "{{path}}"
-#         helm:
-#           releaseName: "reloader"
-#           valueFiles:
-#             - "{{valuesFile}}"
-#       syncPolicy:
-#         automated:
-#           prune: false
-#           selfHeal: false
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: reloader
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - clustername: cluster1
+                  cluster: https://kubernetes.default.svc
+                  namespace: reloader
+                  path: argocd/dops-apps/reloader/cluster1
+                - clustername: cluster2
+                  cluster: https://192.168.1.84:61565
+                  namespace: reloader
+                  path: argocd/dops-apps/reloader/cluster2
+          - list:
+              elements:
+                - repoURL: https://github.com/jmcc-sss/jmcc-test
+                  targetRevision: main
+                  valuesFile: values.yaml
+  template:
+    metadata:
+      name: "{{clustername}}-reloader"
+    spec:
+      project: dops
+      destination:
+        server: "{{cluster}}"
+        namespace: reloader
+      source:
+        repoURL: "{{repoURL}}"
+        targetRevision: "{{targetRevision}}"
+        path: "{{path}}"
+        helm:
+          releaseName: "reloader"
+          valueFiles:
+            - "{{valuesFile}}"
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
