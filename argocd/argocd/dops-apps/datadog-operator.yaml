@@ -19,7 +19,7 @@ spec:
                   targetRevision: main
                   path: argocd/dops-apps/datadog-operator
                   namespace: datadog
-                  releaseName: datagog-operator
+                  releaseName: datadog-operator
   template:
     metadata:
       name: "datadog-operator-{{clustername}}"
