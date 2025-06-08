@@ -18,7 +18,6 @@ spec:
                 - repoURL: https://github.com/jmcc-sss/jmcc-test
                   targetRevision: main
                   path: argocd/dops-apps/datadog-operator
-                  valuesFile: values.yaml
                   namespace: datadog
                   relaseName: datagog-operator
   template:
@@ -37,8 +36,6 @@ spec:
         path: "{{path}}"
         helm:
           releaseName: "{{relaseName}}"
-          valueFiles:
-            - "{{valuesFile}}"
       syncPolicy: {}
         # automated:
         #   prune: false
