@@ -13,13 +13,13 @@ spec:
                   cluster: https://kubernetes.default.svc
                   path: argocd/dops-apps/reloader/cluster1
                   valueFiles: 
-                  - values.yaml
+                    - values.yaml
                 - clustername: cluster2
                   cluster: https://192.168.1.84:61565
                   path: argocd/dops-apps/reloader/base
                   valueFiles: 
-                  - values.yaml
-                  - dev.yaml
+                    - values.yaml
+                    - dev.yaml
           - list:
               elements:
                 - repoURL: https://github.com/jmcc-sss/jmcc-test
