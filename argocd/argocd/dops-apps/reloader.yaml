@@ -42,7 +42,7 @@ spec:
         path: "{{path}}"
         helm:
           releaseName: "{{releaseName}}"
-          valueFiles: {{ valueFiles }}
+          valueFiles: {{ toJson .valueFiles }}
       syncPolicy:
         automated:
           prune: false
