@@ -42,7 +42,7 @@ spec:
         path: "{{path}}"
         helm:
           releaseName: "{{releaseName}}"
-          valueFiles: {{ valueFiles | toYaml | nindent 12 }}
+          valueFiles: "{{ valueFiles }}"
       syncPolicy:
         automated:
           prune: false
