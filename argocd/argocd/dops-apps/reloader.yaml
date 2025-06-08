@@ -21,7 +21,7 @@ spec:
                 - repoURL: https://github.com/jmcc-sss/jmcc-test
                   targetRevision: main
                   namespace: reloader
-                  relaseName: reloader
+                  releaseName: reloader
   template:
     metadata:
       name: "reloader-{{clustername}}"
@@ -37,11 +37,13 @@ spec:
         targetRevision: "{{targetRevision}}"
         path: "{{path}}"
         helm:
-          releaseName: "{{relaseName}}"
+          releaseName: "{{releaseName}}"
       syncPolicy:
-        automated: {}
-          # prune: false
-          # selfHeal: false
+        automated:
+          prune: false
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true
   # Prevents the applicationset from deleting resources if we remove the app
   syncPolicy:
     preserveResourcesOnDeletion: true

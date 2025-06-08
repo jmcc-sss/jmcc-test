@@ -33,10 +33,10 @@ spec:
         repoURL: "{{repoURL}}"
         targetRevision: "{{targetRevision}}"
         path: "{{path}}"
-      syncPolicy:
-        automated: {}
-          # prune: false
-          # selfHeal: false
+      syncPolicy: {}
+        # automated:
+        #   prune: false
+        #   selfHeal: false
   # Prevents the applicationset from deleting resources if we remove the app
   syncPolicy:
     preserveResourcesOnDeletion: true

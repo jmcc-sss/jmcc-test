@@ -37,9 +37,9 @@ spec:
         helm:
           releaseName: "{{releaseName}}"
       syncPolicy:
-        automated: {}
-          # prune: false
-          # selfHeal: false
+        automated:
+          prune: false
+          selfHeal: false
         syncOptions:
           - CreateNamespace=true
   # Prevents the applicationset from deleting resources if we remove the app
