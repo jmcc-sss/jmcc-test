@@ -15,6 +15,6 @@ spec:
     helm:
       releaseName: argocd
   syncPolicy:
-    automated:
-      prune: false
-      selfHeal: false
+    automated: {}
+      # prune: false
+      # selfHeal: false
