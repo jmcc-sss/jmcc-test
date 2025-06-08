@@ -12,11 +12,14 @@ spec:
                 - clustername: cluster1
                   cluster: https://kubernetes.default.svc
                   path: argocd/dops-apps/reloader/cluster1
-                  valueFiles: values.yaml
+                  valueFiles: 
+                  - values.yaml
                 - clustername: cluster2
                   cluster: https://192.168.1.84:61565
                   path: argocd/dops-apps/reloader/base
-                  valueFiles: values.yaml,dev.yaml
+                  valueFiles: 
+                  - values.yaml
+                  - dev.yaml
           - list:
               elements:
                 - repoURL: https://github.com/jmcc-sss/jmcc-test
@@ -39,7 +42,6 @@ spec:
         path: "{{path}}"
         helm:
           releaseName: "{{releaseName}}"
-          valueFiles: "{{ .valueFiles }}"
       syncPolicy:
         automated:
           prune: false
@@ -49,3 +51,11 @@ spec:
   # Prevents the applicationset from deleting resources if we remove the app
   syncPolicy:
     preserveResourcesOnDeletion: true
+  templatePatch: |
+    spec:
+      source:
+        helm:
+          valueFiles:
+          {{- range $valueFile := .valueFiles }}
+            - {{ $valueFile }}
+          {{- end }}
