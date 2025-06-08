@@ -35,7 +35,7 @@ spec:
         targetRevision: "{{targetRevision}}"
         path: "{{path}}"
         helm:
-          releaseName: "{{relaseName}}"
+          releaseName: "{{releaseName}}"
       syncPolicy: {}
         # automated:
         #   prune: false
