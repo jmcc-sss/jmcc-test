@@ -12,11 +12,14 @@ spec:
                 - clustername: cluster1
                   cluster: https://kubernetes.default.svc
                   path: argocd/dops-apps/reloader/cluster1
+                  valueFiles:
+                    - values.yaml
                 - clustername: cluster2
                   cluster: https://192.168.1.84:61565
                   path: argocd/dops-apps/reloader/base
-                  extraValuesFiles:
-                    - dev.yaml 
+                  valueFiles:
+                    - values.yaml
+                    - dev.yaml
           - list:
               elements:
                 - repoURL: https://github.com/jmcc-sss/jmcc-test
@@ -39,13 +42,7 @@ spec:
         path: "{{path}}"
         helm:
           releaseName: "{{releaseName}}"
-          valueFiles:
-            - values.yaml
-            {{- if .extraValuesFiles }}
-            {{- range .extraValuesFiles }}
-            - {{ . }}
-            {{- end }}
-            {{- end }}
+          valueFiles: {{ valueFiles | toYaml | nindent 12 }}
       syncPolicy:
         automated:
           prune: false
