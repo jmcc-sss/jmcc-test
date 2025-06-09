@@ -1,0 +1,15 @@
+ingress-nginx:
+  controller:
+    config:
+      enable-real-ip: "true"
+      forwarded-for-header: CF-Connecting-IP
+      proxy-body-size: 100m
+      proxy-real-ip-cidr: 10.244.0.0/16,10.250.16.0/20
+      ssl-redirect: "false"
+      use-forwarded-headers: "true"
+    ingressClassResource:
+      default: "true"
+    replicaCount: "2"
+    service:
+      annotations:
+        service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
