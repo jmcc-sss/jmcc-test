@@ -1,3 +1,4 @@
 reloader:
   reloader:
     reloadOnCreate: false
+    ignoreNamespaces: kube-system,testing
