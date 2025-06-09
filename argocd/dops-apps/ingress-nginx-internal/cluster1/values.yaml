@@ -1,0 +1,18 @@
+ingress-nginx-internal:
+  controller:
+    config:
+      proxy-body-size: 100m
+      ssl-redirect: "false"
+      use-forwarded-headers: "true"
+    electionID: nginx-internal-leader
+    ingressClass: nginx-internal
+    ingressClassByName: "true"
+    ingressClassResource:
+      controllerValue: k8s.io/nginx-internal
+      enabled: "true"
+      name: nginx-internal
+    replicaCount: "2"
+    service:
+      annotations:
+        service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
