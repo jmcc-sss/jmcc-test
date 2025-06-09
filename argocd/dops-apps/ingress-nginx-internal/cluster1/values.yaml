@@ -1,4 +1,4 @@
-ingress-nginx-internal:
+ingress-nginx:
   controller:
     config:
       proxy-body-size: 100m
