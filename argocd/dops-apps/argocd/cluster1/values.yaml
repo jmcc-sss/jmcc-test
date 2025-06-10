@@ -16,7 +16,7 @@ argo-cd:
         p, role:readonly, repositories, get, *, allow
         p, role:readonly, write-repositories, get, *, allow
         p, role:readonly, projects, get, *, allow
-        p, role:readonly, applications, get, *, allow
+        p, role:readonly, applications, get, team1/*, allow
 
         g, dev1, role:readonly
         g, devops1, role:admin
