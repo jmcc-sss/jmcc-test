@@ -10,17 +10,17 @@ argo-cd:
     rbac:
       policy.csv: |
         p, role:admin, *, *, *, allow
-        p, role:readonly, certificates, get, *, allow
-        p, role:readonly, clusters, get, *, allow
-        p, role:readonly, repositories, get, *, allow
-        p, role:readonly, write-repositories, get, *, allow
-        p, role:readonly, projects, get, *, allow
-        p, role:readonly, applications, get, team1/*/*, allow
+        # p, role:readonly, certificates, get, *, allow
+        # p, role:readonly, clusters, get, *, allow
+        # p, role:readonly, repositories, get, *, allow
+        # p, role:readonly, write-repositories, get, *, allow
+        # p, role:readonly, projects, get, *, allow
+        p, role:readonly, applications, get, team1/*, allow
 
         g, dev1, role:readonly
         g, devops1, role:admin
 
-      policy.default: role:readonly
+      policy.default: role:none
 
   controller:
     replicas: 2
