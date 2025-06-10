@@ -7,21 +7,21 @@ argo-cd:
       accounts.devops1.enabled: "true"
     params:
       controller.sharding.algorithm: "round-robin"
-  rbac:
-    policy.csv: |
-      p, role:admin, *, *, *, allow
-      p, role:readonly, applications, get, */*, allow
-      p, role:readonly, certificates, get, *, allow
-      p, role:readonly, clusters, get, *, allow
-      p, role:readonly, repositories, get, *, allow
-      p, role:readonly, write-repositories, get, *, allow
-      p, role:readonly, projects, get, *, allow
-      p, role:readonly, applications, get, *, allow
+    rbac:
+      policy.csv: |
+        p, role:admin, *, *, *, allow
+        p, role:readonly, applications, get, */*, allow
+        p, role:readonly, certificates, get, *, allow
+        p, role:readonly, clusters, get, *, allow
+        p, role:readonly, repositories, get, *, allow
+        p, role:readonly, write-repositories, get, *, allow
+        p, role:readonly, projects, get, *, allow
+        p, role:readonly, applications, get, *, allow
 
-      g, dev1, role:readonly
-      g, devops1, role:admin
+        g, dev1, role:readonly
+        g, devops1, role:admin
 
-    policy.default: role:readonly
+      policy.default: role:readonly
 
   controller:
     replicas: 2
