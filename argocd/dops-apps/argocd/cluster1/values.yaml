@@ -9,16 +9,11 @@ argo-cd:
       controller.sharding.algorithm: "round-robin"
     rbac:
       policy.csv: |
-        p, role:admin, *, *, *, allow
-        # p, role:readonly, certificates, get, *, allow
-        # p, role:readonly, clusters, get, *, allow
-        # p, role:readonly, repositories, get, *, allow
-        # p, role:readonly, write-repositories, get, *, allow
-        # p, role:readonly, projects, get, *, allow
-        p, role:readonly, applications, get, team1/*, allow
+        p, role:sss-admin, *, *, *, allow
+        p, role:team1, applications, get, team1/*, allow
 
-        g, dev1, role:readonly
-        g, devops1, role:admin
+        g, dev1, role:team1
+        g, devops1, role:sss-admin
 
       policy.default: role:none
 
