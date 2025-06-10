@@ -1,7 +1,22 @@
 argo-cd:
   configs:
+    cm:
+      accounts.dev1: login
+      accounts.dev1.enabled: "true"
+      accounts.devops1: login
+      accounts.devops1.enabled: "true"
     params:
       controller.sharding.algorithm: "round-robin"
+  rbac:
+    policy.csv: |
+      p, role:org-admin, applications, *, */*, allow
+      p, role:admin, applications, *, *, allow
+      p, role:readonly, applications, get, *, allow
+
+      g, dev1, role:readonly
+      g, devops1, role:admin
+
+    policy.default: role:readonly
 
   controller:
     replicas: 2
