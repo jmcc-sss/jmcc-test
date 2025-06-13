@@ -14,7 +14,7 @@ spec:
     path: argocd/dops-apps/test-chart
     helm:
       # Otherwise it uses the name of the argocd application (reloader-cluster2) and names all the resource (reloader-cluster-xxx)
-      releaseName: reloader
+      releaseName: test-chart-test
       valueFiles:
         - values.yaml
         - test.yaml
