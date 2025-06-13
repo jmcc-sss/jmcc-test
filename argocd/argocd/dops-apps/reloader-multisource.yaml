@@ -35,7 +35,7 @@ spec:
       destination:
         server: "{{cluster}}"
         namespace: "{{namespace}}"
-      source:
+      sources:
         # Helm chart
         - chart: "{{helmChart}}"
           repoURL: "{{helmRepo}}"
