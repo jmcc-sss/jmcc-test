@@ -1,0 +1,52 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: reloader-dyn
+#   namespace: argocd
+# spec:
+#   generators:
+#     - matrix:
+#         generators:
+#           - list:
+#               elements:
+#                 - clustername: cluster1
+#                   cluster: https://kubernetes.default.svc
+#                   path: argocd/dops-apps/reloader/base
+#                   helm-env: dev
+#                 # - clustername: cluster2
+#                 #   cluster: https://192.168.1.84:61565
+#                 #   path: argocd/dops-apps/reloader/cluster2
+#           - list:
+#               elements:
+#                 - repoURL: https://github.com/jmcc-sss/jmcc-test
+#                   targetRevision: main
+#                   namespace: testing
+#                   releaseName: reloader
+#   template:
+#     metadata:
+#       name: "reloader-dyn-{{clustername}}"
+#       annotations:
+#         argocd.argoproj.io/manifest-generate-paths: .
+#     spec:
+#       project: dops
+#       destination:
+#         server: "{{cluster}}"
+#         namespace: "{{namespace}}"
+#       source:
+#         repoURL: "{{repoURL}}"
+#         targetRevision: "{{targetRevision}}"
+#         path: "{{path}}"
+#         helm:
+#           releaseName: "{{releaseName}}"
+#           valueFiles:
+#           - values.yaml
+#           - "{{helm-env}}.yaml"
+#       syncPolicy:
+#         automated:
+#           prune: false
+#           selfHeal: false
+#         syncOptions:
+#           - CreateNamespace=true
+#   # Prevents the applicationset from deleting resources if we remove the app
+#   syncPolicy:
+#     preserveResourcesOnDeletion: false
