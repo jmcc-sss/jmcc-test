@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: reloader-configmap
 data:
-  initial-test: 9001
+  initial-test: "9001"
