@@ -5,19 +5,12 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - matrix:
-        generators:
-          - list:
-              elements:
-                - clustername: cluster1
-                  cluster: https://kubernetes.default.svc
-                  path: argocd/dops-apps/certbot/
-          - list:
-              elements:
-                - repoURL: https://github.com/jmcc-sss/jmcc-test
-                  targetRevision: main
-                  namespace: certbot
-                  releaseName: certbot
+    - list:
+        elements:
+          - clustername: cluster1
+            cluster: https://kubernetes.default.svc
+            chartVersion: 1.17.2
+            valuesFile: $values/argocd/dops-apps/certbot/cluster1/values.yaml
   template:
     metadata:
       name: "certbot-{{clustername}}"
@@ -27,13 +20,20 @@ spec:
       project: dops
       destination:
         server: "{{cluster}}"
-        namespace: "{{namespace}}"
-      source:
-        repoURL: "{{repoURL}}"
-        targetRevision: "{{targetRevision}}"
-        path: "{{path}}"
-        helm:
-          releaseName: "{{releaseName}}"
+        namespace: certbot
+      sources:
+        # Helm
+        - repoURL: https://charts.jetstack.io
+          chart: cert-manager
+          targetRevision: "{{chartVersion}}"
+          helm:
+            releaseName: certbot
+            valueFiles:
+            - "{{valuesFile}}"
+        # Git
+        - repoURL: https://github.com/jmcc-sss/jmcc-test
+          targetRevision: main
+          ref: values
       syncPolicy:
         automated:
           prune: false
