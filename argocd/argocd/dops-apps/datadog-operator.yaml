@@ -5,21 +5,16 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - matrix:
-        generators:
-          - list:
-              elements:
-                - clustername: cluster1
-                  cluster: https://kubernetes.default.svc
-                - clustername: cluster2
-                  cluster: https://192.168.1.84:61565
-          - list:
-              elements:
-                - repoURL: https://github.com/jmcc-sss/jmcc-test
-                  targetRevision: main
-                  path: argocd/dops-apps/datadog-operator
-                  namespace: datadog
-                  releaseName: datadog-operator
+    - list:
+        elements:
+          - clustername: cluster1
+            cluster: https://kubernetes.default.svc
+            chartVersion: 2.9.2
+            valuesFile: $values/argocd/dops-apps/datadog-operator/cluster1/values.yaml
+          - clustername: cluster2
+            cluster: https://192.168.1.84:61565
+            chartVersion: 2.9.2
+            valuesFile: $values/argocd/dops-apps/datadog-operator/cluster2/values.yaml
   template:
     metadata:
       name: "datadog-operator-{{clustername}}"
@@ -29,13 +24,20 @@ spec:
       project: dops
       destination:
         server: "{{cluster}}"
-        namespace: "{{namespace}}"
-      source:
-        repoURL: "{{repoURL}}"
-        targetRevision: "{{targetRevision}}"
-        path: "{{path}}"
-        helm:
-          releaseName: "{{releaseName}}"
+        namespace: datadog
+      sources:
+        # Helm
+        - repoURL: https://helm.datadoghq.com
+          chart: datadog-operator
+          targetRevision: "{{chartVersion}}"
+          helm:
+            releaseName: datadog-operator
+            valueFiles:
+            - "{{valuesFile}}"
+        # Git
+        - repoURL: https://github.com/jmcc-sss/jmcc-test
+          targetRevision: main
+          ref: values
       syncPolicy:
         automated:
           prune: false
