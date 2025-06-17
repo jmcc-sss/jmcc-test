@@ -1,8 +1,0 @@
-apiVersion: v2
-name: cert-manager
-description: Umbrella chart to deploy cert-manager for certbot support
-version: 0.1.0
-dependencies:
-  - name: cert-manager
-    version: 1.17.2
-    repository: https://charts.jetstack.io
