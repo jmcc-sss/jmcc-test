@@ -1,7 +1,6 @@
+nameOverride: reloader
+fullnameOverride: reloader
 reloader:
-  nameOverride: reloader
-  fullnameOverride: reloader
-  reloader:
-    ignoreNamespaces: kube-system
-    reloadOnCreate: true
-    syncAfterRestart: true
+  ignoreNamespaces: kube-system
+  reloadOnCreate: true
+  syncAfterRestart: true
